@@ -1,7 +1,7 @@
 # Programacion-Orientada-a-Objetos-C-
 # Sistema de Gestión de Biblioteca
 
-##**Contexto de la problemática**
+**Contexto de la problemática**
 La biblioteca local de la comunidad se enfrenta a un problema con su sistema de gestión, que es bastante antiguo y con el tiempo ha resultado ineficiente y poco practico para la gestión actual. Por esta razón, han decidido desarrollar un nuevo programa que les permita gestionar de manera eficiente el registro de clientes, el acceso al material de la biblioteca y la realización de préstamos.
 
 El programa contara con tres clases:
