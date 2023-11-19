@@ -1,5 +1,9 @@
+#ifndef ELEMENTO_BIBLIOGRAFICO_H
+#define ELEMENTO_BIBLIOGRAFICO_H
+
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 class ElementoBibliografico{
@@ -12,6 +16,7 @@ class ElementoBibliografico{
 		bool status; //True = activo | False = inactivo
 	public:
 		//Constructor
+		ElementoBibliografico();
 		ElementoBibliografico(string,int,string,string,int,bool);
 		//Setters
 		void setTipo(string);
@@ -29,7 +34,18 @@ class ElementoBibliografico{
 		bool getStatus();
 		//Metodos para dar de alta y baja
 		void verStatus();
+		//Imprimir datos
+		void imprimirDatos();
 };
+//Constructor
+ElementoBibliografico::ElementoBibliografico(){
+	tipo = "";
+	codigo = 0;
+	autor = "";
+	titulo = "";
+	anio = 0;
+	status = true ;
+}
 
 ElementoBibliografico::ElementoBibliografico(string _tipo,int _codigo,string _autor,string _titulo,int _anio,bool _status){
 	tipo = _tipo;
@@ -77,6 +93,7 @@ int ElementoBibliografico::getAnio(){
 bool ElementoBibliografico::getStatus(){
 	return status;
 }
+
 //Altas y bajas
 void ElementoBibliografico::verStatus(){
 	if(status==true){
@@ -86,3 +103,13 @@ void ElementoBibliografico::verStatus(){
 	}
 }
 
+//Imprimir datos
+void ElementoBibliografico::imprimirDatos(){
+	cout<<"El tipo de material es : "<< tipo << endl;
+	cout<<"El codigo del amterial es: "<< codigo << endl;
+	cout<<"El autor del material es: "<< autor <<endl;
+	cout<<"El titulo del material es: "<< titulo <<endl;
+	cout<<"El año de puclicacion es: "<< anio <<endl;
+}
+
+#endif
