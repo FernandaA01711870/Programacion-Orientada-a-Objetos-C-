@@ -1,8 +1,14 @@
+#ifndef USUARIO_H
+#define USUARIO_H
+
 #include<iostream>
 #include<string.h>
 
-#pragma once
+#include "ElementoBibliografico.h"
+#include "Prestamo.h"
 using namespace std;
+
+class Prestamo;  
 
 class Usuario{
 	private:
@@ -11,18 +17,19 @@ class Usuario{
 		int edad; 
 		string correo;
 		int telefono;
-		int sancion;
+		Prestamo idPrestamo;
 		
 	public:
 		//Constructor 
-		Usuario(string,string,int,string,int,int);
+		Usuario();
+		Usuario(string,string,int,string,int,Prestamo);
 		//Setters
 		void setNombre(string);
 		void setApellido(string);
 		void setEdad(int);
 		void setCorreo(string);
 		void setTelefono(int);
-		void setSancion(int);
+		void setIdPrestamo(Prestamo);
 		
 		//Getters
 		string getNombre();
@@ -30,18 +37,30 @@ class Usuario{
 		int getEdad();
 		string getCorreo();
 		int getTelefono();
-		int getSancion();	
-		
+		Prestamo getIdPrestamo();
+		//Metodos para llevar y dejar libros
+	    void llevarElemento(ElementoBibliografico& elemento);
+	    void devolverElemento(ElementoBibliografico& elemento);
+		//Imprimir datos
+		void imprimirDatos();
 };
 
 //Constructor
-Usuario::Usuario(string _nombre,string _apellido,int _edad,string _correo,int _telefono,int _sancion){
+Usuario::Usuario(){
+	nombre = "";
+	apellido = "";
+	edad = 0;
+	correo = "";
+	telefono = 0;
+}
+
+Usuario::Usuario(string _nombre,string _apellido,int _edad,string _correo,int _telefono,Prestamo _idPrestamo){
 	nombre = _nombre;
 	apellido = _apellido;
 	edad = _edad;
 	correo = _correo;
 	telefono = _telefono;
-	sancion = _sancion;
+	idPrestamo = _idPrestamo;
 }
 
 //Setters
@@ -60,8 +79,8 @@ void Usuario::setCorreo(string _correo){
 void Usuario::setTelefono(int _telefono){
 	telefono = _telefono;
 }
-void Usuario::setSancion(int _sancion){
-	sancion = _sancion;
+void Usuario::setIdPrestamo(Prestamo _idPrestamo){
+	idPrestamo = _idPrestamo;
 }
 
 //Getter
@@ -81,6 +100,38 @@ string Usuario::getCorreo(){
 int Usuario::getTelefono(){
 	return telefono;
 }
-int Usuario::getSancion(){
-	return sancion;
+
+Prestamo Usuario::getIdPrestamo(){
+	return idPrestamo;
 }
+
+//Llevar y dejar libros
+void  Usuario::llevarElemento(ElementoBibliografico& elemento){
+	if (elemento.getStatus()) {
+        elemento.setStatus(false);
+        cout << "El usuario " << nombre << " llevo el elemento con codigo " << elemento.getCodigo() <<endl;
+    } else {
+    	cout << "El elemento con codigo " << elemento.getCodigo() << " no está disponible para prestamo." <<endl;
+    }
+}
+
+void Usuario::devolverElemento(ElementoBibliografico& elemento){
+	if (!elemento.getStatus()) {
+		elemento.setStatus(true);
+        cout << "El usuario " << nombre << " devolvio el material con codigo " << elemento.getCodigo() <<endl;
+    } else {
+        cout << "El usuario " << nombre << " no tiene registrado el material con codigo " << elemento.getCodigo() <<endl;
+    }
+}
+
+//Imprimir datos
+void Usuario::imprimirDatos(){
+	cout<<"Nombre del usuario: "<< nombre <<endl;
+	cout<<"Apellido del usuario: "<< apellido <<endl;
+	cout<<"Edad: "<< edad <<endl;
+	cout<<"Correo electronico: "<< correo <<endl;
+	cout<<"Numero telefonico: "<< telefono <<endl;
+	cout<<"ID del prestamo: "<< idPrestamo.getIdPrestamo() <<endl<<endl;
+}
+
+#endif
