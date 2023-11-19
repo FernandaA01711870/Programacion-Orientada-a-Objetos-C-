@@ -21,7 +21,8 @@ Esta clase permitirá tener un registro de todos los usuarios registrados en la 
  - Edad
  - Correo electrónico
  - Teléfono
- - Sanción (por si el usuario no devuelve el materia prestado)
+ - El ID del prestamo que realizo
+ - Si llevo o devolvio algun material
  3) ***Clase Préstamo***
  Con esta clase los usuarios podrán acceder al material de la biblioteca y tomarlo prestado. Sus elementos son:
  - Código del material
