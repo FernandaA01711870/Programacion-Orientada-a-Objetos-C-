@@ -7,7 +7,7 @@
 using namespace std;
 
 class ElementoBibliografico{
-	private:
+	protected:
 		string tipo; //Libro, Revista, Periodico, Articulo, etc...
 		int codigo;
 		string autor;
