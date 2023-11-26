@@ -4,7 +4,6 @@
 #include<iostream>
 #include<string.h>
 
-#include "ElementoBibliografico.h"
 #include "Prestamo.h"
 using namespace std;
 
@@ -16,19 +15,19 @@ class Usuario{
 		string apellido;
 		int edad; 
 		string correo;
-		int telefono;
+		string telefono;
 		Prestamo idPrestamo;
 		
 	public:
 		//Constructor 
 		Usuario();
-		Usuario(string,string,int,string,int,Prestamo);
+		Usuario(string,string,int,string,string,Prestamo);
 		//Setters
 		void setNombre(string);
 		void setApellido(string);
 		void setEdad(int);
 		void setCorreo(string);
-		void setTelefono(int);
+		void setTelefono(string);
 		void setIdPrestamo(Prestamo);
 		
 		//Getters
@@ -36,7 +35,7 @@ class Usuario{
 		string getApellido();
 		int getEdad();
 		string getCorreo();
-		int getTelefono();
+		string getTelefono();
 		Prestamo getIdPrestamo();
 		//Metodos para llevar y dejar libros
 	    void llevarElemento(ElementoBibliografico& elemento);
@@ -51,10 +50,10 @@ Usuario::Usuario(){
 	apellido = "";
 	edad = 0;
 	correo = "";
-	telefono = 0;
+	telefono = "";
 }
 
-Usuario::Usuario(string _nombre,string _apellido,int _edad,string _correo,int _telefono,Prestamo _idPrestamo){
+Usuario::Usuario(string _nombre,string _apellido,int _edad,string _correo,string _telefono,Prestamo _idPrestamo){
 	nombre = _nombre;
 	apellido = _apellido;
 	edad = _edad;
@@ -76,7 +75,7 @@ void Usuario::setEdad(int _edad){
 void Usuario::setCorreo(string _correo){
 	correo = _correo;
 }
-void Usuario::setTelefono(int _telefono){
+void Usuario::setTelefono(string _telefono){
 	telefono = _telefono;
 }
 void Usuario::setIdPrestamo(Prestamo _idPrestamo){
@@ -97,7 +96,7 @@ int Usuario::getEdad(){
 string Usuario::getCorreo(){
 	return correo;
 }
-int Usuario::getTelefono(){
+string Usuario::getTelefono(){
 	return telefono;
 }
 
