@@ -2,35 +2,43 @@
 #define PRESTAMO_H
 
 #include<iostream>
-#include<string.h>
+#include<string>
+#include <vector>
 
-#include "Usuario.h"
+#include "ElementoBibliografico.h"
 
 using namespace std;
+ 
 
 class Prestamo{
 	private:
-		ElementoBibliografico codigo;
 		int idPrestamo;
 		string fechaSalida;
 		string fechaRegreso;
+		vector<ElementoBibliografico*> elementos;
+		
 	public:
 		//Constructor
 		Prestamo();
-		Prestamo(ElementoBibliografico,int,string,string);
+		Prestamo(int,string,string);
+		
 		//Setters
-		void setCodigo(ElementoBibliografico);
 		void setIdPrestamo(int);
 		void setFechaSalida(string);
 		void setFechaRegreso(string);
+		void agregarElementos(ElementoBibliografico*);
+		
 		//Getters
-		ElementoBibliografico getCodigo();
 		int getIdPrestamo();
 		string getFechaSalida();
 		string getFechaRegreso();
+		vector<ElementoBibliografico*> getElementos();
+		
 		//Imprimir datos
-		void imprimirDatos();		
+		void imprimirDatos();	
+		
 };
+
 //Constructor
 Prestamo::Prestamo(){
 	idPrestamo = 0;
@@ -38,18 +46,13 @@ Prestamo::Prestamo(){
 	fechaRegreso = "";
 }
 
-Prestamo::Prestamo(ElementoBibliografico _codigo,int _idPrestamo,string _fechaSalida,string _fechaRegreso){
-	codigo = _codigo;
+Prestamo::Prestamo(int _idPrestamo,string _fechaSalida,string _fechaRegreso){
 	idPrestamo = _idPrestamo;
 	fechaSalida = _fechaSalida;
 	fechaRegreso = _fechaRegreso;
 }
 
 //Setters
-void Prestamo::setCodigo(ElementoBibliografico _codigo){
-	codigo = _codigo;
-}
-
 void Prestamo::setIdPrestamo(int _idPrestamo){
 	idPrestamo = _idPrestamo;
 }
@@ -59,11 +62,10 @@ void Prestamo::setFechaSalida(string _fechaSalida){
 void Prestamo::setFechaRegreso(string _fechaRegreso){
 	fechaRegreso = _fechaRegreso;
 }
-
-//Getters
-ElementoBibliografico Prestamo::getCodigo(){
-	return codigo;
+void Prestamo::agregarElementos(ElementoBibliografico* _elemento){
+	elementos.push_back(_elemento);
 }
+//Getters
 int Prestamo::getIdPrestamo(){
 	return idPrestamo;
 }
@@ -73,14 +75,21 @@ string Prestamo::getFechaSalida(){
 string Prestamo::getFechaRegreso(){
 	return fechaRegreso;
 }
-
+vector<ElementoBibliografico*> Prestamo::getElementos(){
+	return elementos;
+}
 
 //Imprimir datos
 void Prestamo::imprimirDatos(){
-	cout<<"Codigo del material: "<< codigo.getCodigo() << endl;
-	cout<<"ID del prestamo: "<< idPrestamo << endl;
-	cout<<"Fecha de prestamo: "<< fechaSalida <<endl;
-	cout<<"Fecha de regreso: "<<fechaRegreso <<endl<<endl;	
+cout <<"ID del prestamo: "<< idPrestamo<<endl;
+    cout<<"Fecha de prestamo: "<< fechaSalida<<endl;
+    cout<<"Fecha de regreso: "<< fechaRegreso<<endl;
+
+    cout<< "....Codigos de los elementos que constitutuyen el prestamo...." << endl;
+   	for (size_t i = 0; i < elementos.size(); ++i) {
+        cout << "Codigo del material: " << elementos[i]->getCodigo() << endl;
+    }
+    cout << endl;
 }
 
 #endif
